@@ -1,59 +1,69 @@
+# This is for re-writting "git://github.com" URLs but since the git protocol
+# won't work for *any* outside site we might as well re-write any git:// URL
+# and hope the the site supports it
+[url "http://github.com"]
+	insteadOf = git://github.com
+[url "http://github.com/"]
+	insteadOf = git://git@github.com:
+[url "http://github.com/"]
+	insteadOf = git@github.com:
+# [url "http://git.dcmtk.org"]
+# 	insteadOf = "git://git.dcmtk.org"
+# [url "http://"]
+# 	insteadOf = "git://"
+
+# Workaround for bug when using SSL and HTTP proxy (LP #940431)
+#[url "http://"]
+#	insteadOf = https://
+
+[web]
+	browser = google-chrome
 [user]
-  name = Ben Alman
-  email = EMAIL
-[core]
-  autocrlf = input
-  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  excludesfile = ~/.gitignore_global
-[apply]
-  whitespace = fix
+	name = Taylor Braun-Jones
+[gui]
+	historybrowser = gitk
 [alias]
-  br = branch
-  ci = commit
-  co = checkout
-  df = diff
-  g = grep -I
-  lg = log -p
-  pp = !"echo 'Pull'; git pull; echo 'Push'; git push"
-  rb = rbranch
-  rv = review
-  st = status
-  ksdiff = difftool -y -t Kaleidoscope
-[branch "master"]
-  remote = origin
-  merge = refs/heads/master
+        st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log -p
+        lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
+        dt = difftool -y
+	switch = !legit switch \"$@\"
+	branches = !legit branches
+	sprout = !legit sprout \"$@\"
+	unpublish = !legit unpublish \"$@\"
+	harvest = !legit harvest \"$@\"
+	sync = !legit sync \"$@\"
+	publish = !legit publish \"$@\"
+	graft = !legit graft \"$@\"
+	head = rev-parse HEAD
+[core]
+	excludesfile = ~/.dotfiles/conf/.gitignore_global
 [color]
-  ui = auto
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-[merge]
-  log = true
-[difftool "Kaleidoscope"]
-  cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	branch = auto
+	diff = auto
+	showbranch = auto
+[pull]
+	rebase = true
+[rebase]
+	autosquash = true
+[http]
+[interactive]
+	singlekey = true
+[push]
+	default = simple
 [rerere]
-  enabled = 1
-[url "git@github.com:"]
-  insteadOf = "gh:"
-  pushInsteadOf = "github:"
-  pushInsteadOf = "git://github.com/"
-[url "git://github.com/"]
-  insteadOf = "github:"
-[url "git@gist.github.com:"]
-  insteadOf = "gst:"
-  pushInsteadOf = "gist:"
-  pushInsteadOf = "git://gist.github.com/"
-[url "git://gist.github.com/"]
-  insteadOf = "gist:"
-[url "git@heroku.com:"]
-  insteadOf = "heroku:"
+	enabled = true
+
+#
+# BeyondCompare 3 as the diff/merge tool
+#
+[merge]
+	tool = bc3
+[diff]
+	tool = bc3
+[difftool]
+	bc3 = trustExitCode

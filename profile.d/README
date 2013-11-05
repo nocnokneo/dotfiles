@@ -1,0 +1,13 @@
+From 'INVOCATION' section of bash(1):
+
+       A  login shell is one whose first character of argument zero is a -, or
+       one started with the --login option.
+
+       When  bash is invoked as an interactive login shell, or as a non-inter‐
+       active shell with the --login option, it first reads and executes  com‐
+       mands  from  the file /etc/profile, if that file exists.  After reading
+       that file, it looks for ~/.bash_profile, ~/.bash_login, and ~/.profile,
+       in  that order, and reads and executes commands from the first one that
+       exists and is readable.
+
+~/.profile must be setup to source *.sh files in this directory.

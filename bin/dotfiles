@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo 'Dotfiles - "Cowboy" Ben Alman - http://benalman.com/'
+echo 'Dotfiles - github.com/nocnokneo/dotfiles'
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 
 Usage: $(basename "$0")
 
 See the README for documentation.
-https://github.com/cowboy/dotfiles
+https://github.com/nocnokneo/dotfiles
 
 Copyright (c) 2012 "Cowboy" Ben Alman
 Licensed under the MIT license.
@@ -125,6 +125,9 @@ function do_stuff() {
 
 # Enough with the functions, let's do stuff.
 
+# Utilities, helpers.
+source ~/.dotfiles/bashrc.d/10_misc.sh
+
 # Ensure that we can actually, like, compile anything.
 if [[ ! "$(type -P gcc)" && "$OSTYPE" =~ ^darwin ]]; then
   e_error "The XCode Command Line Tools must be installed first."
@@ -133,7 +136,7 @@ fi
 
 # If Git is not installed...
 if [[ ! "$(type -P git)" ]]; then
-  # OSX
+  # OSX. TODO: Use platform_dist
   if [[ "$OSTYPE" =~ ^darwin ]]; then
     # It's easiest to get Git via Homebrew, so get that first.
     if [[ ! "$(type -P brew)" ]]; then
@@ -148,10 +151,13 @@ if [[ ! "$(type -P git)" ]]; then
       brew install git
     fi
   # Ubuntu.
-  elif [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu ]]; then
-    # Git is fairly easy.
+  elif [[ `platform_dist` == Ubuntu ]]; then
     e_header "Installing Git"
     sudo apt-get -qq install git-core
+  # Red Hat.
+  elif [[ `platform_dist` == redhat ]]; then
+    e_header "Installing Git"
+    sudo yum install -qy git
   fi
 fi
 
@@ -174,17 +180,11 @@ if [[ ! -d ~/.dotfiles ]]; then
 else
   # Make sure we have the latest files.
   e_header "Updating dotfiles"
-  cd ~/.dotfiles
-  git pull
-  git submodule update --init --recursive --quiet
+  (cd ~/.dotfiles && git pull)
 fi
 
-# Utilities, helpers.
-source ~/.dotfiles/source/10_misc.sh
-
 # Add binaries into the path
-PATH=~/.dotfiles/bin:$PATH
-export PATH
+path_add ~/.dotfiles
 
 # Tweak file globbing.
 shopt -s dotglob

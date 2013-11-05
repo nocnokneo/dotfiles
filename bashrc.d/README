@@ -1,0 +1,16 @@
+From 'INVOCATION' section of bash(1):
+
+       An interactive shell is one started without  non-option  arguments  and
+       without the -c option whose standard input and error are both connected
+       to terminals (as determined by isatty(3)), or one started with  the  -i
+       option.   PS1 is set and $- includes i if bash is interactive, allowing
+       a shell script or a startup file to test this state.
+
+       When an interactive shell that is not a login shell  is  started,  bash
+       reads  and  executes  commands  from /etc/bash.bashrc and ~/.bashrc, if
+       these files exist.
+
+~/.bashrc is setup to source *.sh files in this directory.
+
+Place configuration that is unique to the local machine (and cannot be
+generalized in some way) in 90local.sh

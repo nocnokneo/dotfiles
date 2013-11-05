@@ -1,0 +1,20 @@
+# Escape key is ctrl-o (ctrl-o o to send a literal ctrl-o to the terminal)
+escape ^oo
+
+startup_message off
+altscreen on
+
+# Default lines of scrollback history
+defscrollback 100000
+
+# backticks to display information in the statusbar
+# From: https://github.com/thewtex/screen-cpu-mem
+backtick 1 0 0 /usr/bin/screen-mem-usage
+backtick 2 0 0 /usr/bin/screen-cpu-usage
+hardstatus alwayslastline
+hardstatus string '%{kg}Host:%{kG}%H%{kg} %=%{kb}Mem:%{kB}%1`  %{ky}Cpu:%{kY}%2`%%  %{kR}Load:%{kr}%l%=%{kc} %D %m/%d %{kC}%C%a%{w}'
+
+# Special Bash configuration for screen: Ignore 2 consecutive EOF characters
+# (Ctrl-d) and tell the user "Use "exit" to leave the shell".  On the third
+# consecutive EOF character, it will finally honor the request and exit.
+setenv IGNOREEOF 2
