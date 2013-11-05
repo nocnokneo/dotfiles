@@ -208,7 +208,7 @@
 ;;
 ;; web-mode.el
 ;;
-;; See: http://web-mode.org/
+;; See: http://web-mode.org/ for common customizations and shortcuts
 ;;
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -219,3 +219,9 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; HTML offset indentation
+(setq web-mode-markup-indent-offset 2)
+;; CSS offset indentation
+(setq web-mode-css-indent-offset 2)
+;; Script offset indentation (for JavaScript, Java, PHP, etc.)
+(setq web-mode-code-indent-offset 2)]
