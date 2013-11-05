@@ -3,8 +3,8 @@
 umask 0022
 
 # set PATH so it includes user's private bin if it exists
-if [ -d ~/bin ] ; then
-    export PATH="~/bin:$PATH"
+if [ -d ${HOME}/bin ] ; then
+    export PATH="${HOME}/bin:$PATH"
 fi
 
 # set EDITOR to the best editor we can find on the system
