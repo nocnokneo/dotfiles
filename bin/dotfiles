@@ -180,8 +180,13 @@ if [[ ! -d ~/.dotfiles ]]; then
 else
   # Make sure we have the latest files.
   e_header "Updating dotfiles"
-  (cd ~/.dotfiles && git pull)
+  cd ~/.dotfiles
+  git pull
 fi
+
+# Always use this identity for the dotfiles repository
+git config user.name  "Taylor Braun-Jones"
+git config user.email taylor@braun-jones.org
 
 # Add binaries into the path
 path_add ~/.dotfiles
