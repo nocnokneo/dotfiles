@@ -172,11 +172,11 @@
 ;; (ido-mode t)
 ;; (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
-(require 'code-templates)
+(load "code-templates")
 
 (require 'matlab)
 
-(require 'qmake)
+(load "qmake")
 
 ;; Cedet (see http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html)
 ;; (require 'cedet)
@@ -196,7 +196,7 @@
 
 ;; (require 'php-mode)
 
-(require 'google-c-style)
+(load "google-c-style")
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c++-mode-common-hook 'google-set-c-style)
 
