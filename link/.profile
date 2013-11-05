@@ -4,8 +4,8 @@
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
 
-# Source ~/.bashrc if running interactive bash
-[ -n "$BASH_VERSION" ] && . ~/.bashrc
+# Source ~/.bashrc if running bash
+[ -n "$BASH_VERSION" -a -r ~/.bashrc ] && . ~/.bashrc
 
 # Source ~/.dotfiles/profile.d/*.sh files
 if [ -d ~/.dotfiles/profile.d ]; then
