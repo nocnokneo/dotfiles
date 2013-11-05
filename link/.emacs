@@ -121,7 +121,7 @@
                                          try-expand-list
                                          try-expand-line))
 
-;; Placed versioned backup files in the .emacs.d directory
+;; Placed versioned backup files
 (setq backup-by-copying t)
 (setq backup-directory-alist '(("." . "~/.backups")))
 
@@ -139,7 +139,7 @@
   (setq c-block-comment-prefix "*"))
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
-(setq load-path (append load-path '("~/.emacs.d/")))
+(setq load-path (append load-path '("~/.dotfiles/conf/emacs.d/")))
 
 ;; etags mode for C/C++ programmers
 (require 'etags)
@@ -172,17 +172,14 @@
 ;; (ido-mode t)
 ;; (setq ido-enable-flex-matching t) ;; enable fuzzy matching
 
-(if (file-readable-p "~/.emacs.d/code-templates.el")
-    (load-file "~/.emacs.d/code-templates.el"))
+(require 'code-templates)
 
-(if (file-readable-p "~/.emacs.d/matlab.el")
-    (load-file "~/.emacs.d/matlab.el"))
+(require 'matlab)
 
-(if (file-readable-p "~/.emacs.d/qmake.el")
-    (load-file "~/.emacs.d/qmake.el"))
+(require 'qmake)
 
 ;; Cedet (see http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html)
-;; (load-file "~/.emacs.d/cedet/common/cedet.el")
+;; (require 'cedet)
 
 ;; ;; Enable the Project management system
 ;; (global-ede-mode 1)                      
@@ -199,8 +196,7 @@
 
 ;; (require 'php-mode)
 
-(if (file-readable-p "~/.emacs.d/google-c-style.el")
-    (load-file "~/.emacs.d/google-c-style.el"))
+(require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c++-mode-common-hook 'google-set-c-style)
 
@@ -208,7 +204,6 @@
 
 (require 'tramp)
 (setq tramp-default-method "scp")
-
 
 ;;
 ;; web-mode.el
