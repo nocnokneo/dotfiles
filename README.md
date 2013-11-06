@@ -34,7 +34,7 @@ Notes:
 * You need to have installed [XCode Command Line Tools](https://developer.apple.com/downloads/index.action?=command%20line%20tools), which are available as a separate, optional (and _much smaller_) download from XCode.
 
 ```sh
-. <(curl -fsSL https://raw.github.com/nocnokneo/dotfiles/master/bin/dotfiles)
+. <(curl -fsSL bit.ly/nocnokneo-dotfiles)
 ```
 
 ### Ubuntu
@@ -45,7 +45,7 @@ Notes:
 
 ```sh
 sudo apt-get install curl
-. <(curl -fsSL https://raw.github.com/nocnokneo/dotfiles/master/bin/dotfiles)
+. <(curl -fsSL bit.ly/nocnokneo-dotfiles)
 ```
 
 ## The "init" step
