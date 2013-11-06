@@ -5,8 +5,11 @@ HISTSIZE=500000
 # History expansions will be verified before execution.
 shopt -s histverify
 
-# automatically prepend 'cd ' when entering just a directory path
-shopt -s autocd
+# autocd shell option introduced in bash 4.0
+if vergte ${BASH_VERSION} 4; then
+    # automatically prepend 'cd ' when entering just a directory path
+    shopt -s autocd
+fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
@@ -27,7 +30,9 @@ shopt -s checkwinsize
 if [ -x /usr/bin/lesspipe ]; then
     eval "$(SHELL=/bin/sh lesspipe)"
 elif [ -x /usr/bin/lesspipe.sh ]; then
-    export LESSOPEN="|/usr/bin/lesspipe.sh %s"
+    export LESSOPEN='|/usr/bin/lesspipe.sh %s'
+elif [ -x /opt/local/bin/lesspipe.sh ]; then
+    export LESSOPEN='| /opt/local/bin/lesspipe.sh %s'
 fi
 
 # enable programmable completion features (you don't need to enable
