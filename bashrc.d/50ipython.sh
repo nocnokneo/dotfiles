@@ -1,11 +1,3 @@
-# Compare version strings. Based on http://stackoverflow.com/a/4024263
-vergte() {
-    # Arg 1: Version 1 string
-    # Arg 2: Version 2 string
-    # Returns true if version 1 is greater or equal to version 2
-    [  "$1" = "`echo -e "$1\n$2" | sort -rV | head -n1`" ]
-}
-
 # Older versions of IPython use different options to get the version
 if ipython --version &>/dev/null
 then
