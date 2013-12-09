@@ -3,7 +3,7 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
 HISTSIZE=500000
 
 # History expansions will be verified before execution.
-shopt -s histverify
+#shopt -s histverify
 
 # autocd shell option introduced in bash 4.0
 if vergte ${BASH_VERSION} 4; then
