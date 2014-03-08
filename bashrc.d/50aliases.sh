@@ -4,10 +4,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
 fi
 
 # Some more ls aliases
@@ -66,3 +62,6 @@ fi
 function md() {
   mkdir -p "$@" && cd "$@"
 }
+
+# Ignore binary files when grep'ing and enable colorized output
+export GREP_OPTIONS="-I --color=auto"
