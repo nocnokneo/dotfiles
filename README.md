@@ -22,7 +22,8 @@ Note:
 
 * The `backups` folder only gets created when necessary. Any files in `~/` that would have been overwritten by `copy` or `link` get backed up there.
 * Files in `bin` are executable shell scripts ([~/.dotfiles/bin][bin] is added into the path).
-* Files in `source` get sourced whenever a new shell is opened (in alphanumeric order)..
+* Files in `profile.d` get sourced once upon logging in (in alphanumeric order).
+* Files in `bashrc.d` get sourced whenever a new shell is opened (in alphanumeric order).
 * Files in `conf` just sit there. If a config file doesn't _need_ to go in `~/`, put it in there.
 * Files in `caches` are cached files, only used by some scripts. This folder will only be created if necessary.
 
