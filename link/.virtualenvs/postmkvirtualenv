@@ -1,0 +1,12 @@
+#!/bin/sh
+
+python_version=$(python -c "import sys; print (str(sys.version_info[0])+'.'+str(sys.version_info[1]))")
+system_python=$(which -a python${python_version} | tail -n 1)
+ 
+get_python_lib_cmd="from distutils.sysconfig import get_python_lib; print (get_python_lib(plat_specific=True))"
+lib_virtualenv_path=$(python -c "${get_python_lib_cmd}")
+lib_system_path=$(${system_python} -c "${get_python_lib_cmd}")
+ 
+for x in sip.so dbus _dbus_bindings.so _dbus_qt PyQt4; do
+    ln -snf ${lib_system_path}/${x} ${lib_virtualenv_path}/${x}
+done
