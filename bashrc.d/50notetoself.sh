@@ -1,8 +1,8 @@
 notetoself()
 {
     case "$1" in
-        -h,--help)
-            echo <<EOF
+        -h|--help)
+            cat <<EOF
 Usage: notetoself [TIMESPEC]
 
 Email a note to yourself (i.e. \$USER). Reads the note stdin. The first line
@@ -15,7 +15,7 @@ EOF
         *)
             export body=$(</dev/stdin)
             export subject="[notetoself] $(echo "${body}" | head -n 1)"
-            echo 'echo "${body}" | mail -s "${subject}" ${USER}' | at ${1:-now}
+            echo 'echo "${body}" | mail -s "${subject}" ${USER}' | at "${@:-now}"
             ;;
     esac
 }
