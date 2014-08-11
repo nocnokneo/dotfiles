@@ -5,6 +5,17 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+    if [ -d ~/.dotfiles/profile.d ]; then
+        for sh_file in ~/.dotfiles/profile.d/*.sh; do
+            if [ -r $sh_file ]; then
+                . $sh_file
+            fi
+        done
+        unset sh_file
+    fi
+fi
+
 # Source all ~/.bashrc.d/*.sh files
 if [ -d ~/.dotfiles/bashrc.d ]; then
     for sh_file in ~/.dotfiles/bashrc.d/*.sh; do
