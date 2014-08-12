@@ -11,6 +11,10 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# If possible (e.g. with btrfs), perform a lightweight copy, where the data
+# blocks are copied only when modified.
+alias cp='cp --reflink=auto'
+
 # Disable the GDB startup banner
 alias gdb='gdb -quiet'
 alias pu=pushd
