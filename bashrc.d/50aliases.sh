@@ -69,3 +69,14 @@ function md() {
 
 # Ignore binary files when grep'ing and enable colorized output
 export GREP_OPTIONS="-I --color=auto"
+
+function swap() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: swap FILE1 FILE2" 1>&2
+        return 1
+    fi
+    tmpfile=$(mktemp "$(dirname "$1")/XXXXXX") &&
+        mv "$1" "$tmpfile" &&
+        mv "$2" "$1" &&
+        mv "$tmpfile" "$2"
+}
