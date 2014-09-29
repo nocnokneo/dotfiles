@@ -79,3 +79,5 @@
 	bc3 = trustExitCode
 [sendemail]
 	thread = false
+[credential]
+	helper = cache --timeout=43200
