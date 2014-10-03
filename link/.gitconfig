@@ -81,3 +81,5 @@
 	thread = false
 [credential]
 	helper = cache --timeout=43200
+[hub]
+	host = github.sw.ge.com
