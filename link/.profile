@@ -1,11 +1,11 @@
 # ~/.profile: executed by the command interpreter for login shells.
-# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+#
+# This file is NOT read by bash, if ~/.bash_profile or ~/.bash_login
 # exists.
-# see /usr/share/doc/bash/examples/startup-files for examples.
-# the files are located in the bash-doc package.
-
-# Source ~/.bashrc if running bash
-[ -n "$BASH_VERSION" -a -r ~/.bashrc ] && . ~/.bashrc
+#
+# Altough not universal, a common connevtion is for graphical environments to
+# source this file upon login (e.g. by /etc/X11/xinit/xinitrc-common). That is
+# our hope with this file.
 
 # Source ~/.dotfiles/profile.d/*.sh files
 if [ -d ~/.dotfiles/profile.d ]; then
