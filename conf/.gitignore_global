@@ -33,3 +33,5 @@ Desktop.ini
 
 # NPM
 .npmignore
+*.qmlproject.user
+*.pro.user
