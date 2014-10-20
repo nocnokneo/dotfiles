@@ -80,6 +80,11 @@
 [sendemail]
 	thread = false
 [credential]
+	helper = gnome-keyring
 	helper = cache --timeout=43200
+[credential "https://github.sw.ge.com"]
+	username = TaylorBraunJones
+[credential "https://github.com"]
+	username = nocnokneo
 [hub]
 	host = github.sw.ge.com
