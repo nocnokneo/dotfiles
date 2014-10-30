@@ -3,7 +3,8 @@
 This is a fork of https://github.com/cowboy/dotfiles. It provides an easy command
 to boostrap user configuration files.
 
-That command is [~/bin/dotfiles][dotfiles], and this is my "dotfiles" Git repo.
+That command is [~/.local/bin/dotfiles][dotfiles], and this is my "dotfiles"
+Git repo.
 
 [dotfiles]: https://github.com/nocnokneo/dotfiles/blob/master/bin/dotfiles
 [bin]: https://github.com/nocnokneo/dotfiles/tree/master/bin
