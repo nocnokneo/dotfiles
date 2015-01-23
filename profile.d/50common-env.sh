@@ -20,10 +20,8 @@ preferred_editors="${preferred_editors} nano pico vim vi"
 export EDITOR=$(type ${preferred_editors} 2>/dev/null | sed 's/ .*$//;q')
 export VISUAL="$EDITOR"
 
-# Use the ~/.forward address for MAILTO
+# Use the ~/.forward address for MAILTO and EMAIL
 if [ -r ~/.forward ]; then
     export MAILTO=`cat ~/.forward`
-else
-    export MAILTO=taylor.braun-jones@ge.com
+    export EMAIL=$MAILTO
 fi
-export EMAIL=$MAILTO

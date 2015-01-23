@@ -1,13 +1,14 @@
 # Dotfiles
 
-This is a fork of https://github.com/cowboy/dotfiles. It provides an easy command
-to boostrap user configuration files.
+This is a fork of https://github.com/nocnokneo/dotfiles which is a fork of
+https://github.com/cowboy/dotfiles. It provides an easy command to boostrap
+user configuration files.
 
 That command is [~/.local/bin/dotfiles][dotfiles], and this is my "dotfiles"
 Git repo.
 
-[dotfiles]: https://github.com/nocnokneo/dotfiles/blob/master/bin/dotfiles
-[bin]: https://github.com/nocnokneo/dotfiles/tree/master/bin
+[dotfiles]: https://github.com/TobiasSchroeder/dotfiles/blob/master/bin/dotfiles
+[bin]: https://github.com/TobiasSchroeder/dotfiles/tree/master/bin
 
 ## What, exactly, does the "dotfiles" command do?
 
@@ -36,7 +37,7 @@ Notes:
 * You need to have installed [XCode Command Line Tools](https://developer.apple.com/downloads/index.action?=command%20line%20tools), which are available as a separate, optional (and _much smaller_) download from XCode.
 
 ```sh
-. <(curl -fsSL bit.ly/nocnokneo-dotfiles)
+. <(curl -fsSL https://raw.githubusercontent.com/TobiasSchroeder/dotfiles/master/bin/dotfiles)
 ```
 
 ### Ubuntu
@@ -47,7 +48,7 @@ Notes:
 
 ```sh
 sudo apt-get install curl
-. <(curl -fsSL bit.ly/nocnokneo-dotfiles)
+. <(curl -fsSL https://raw.githubusercontent.com/TobiasSchroeder/dotfiles/master/bin/dotfiles)
 ```
 
 ## The "init" step
@@ -74,7 +75,7 @@ These things will be installed, but _only_ if they aren't already.
   * htop
 
 ## The ~/ "copy" step
-Any file in the `copy` subdirectory will be copied into `~/`. Any file that _needs_ to be modified with personal information (like [.gitconfig](https://github.com/nocnokneo/dotfiles/blob/master/copy/.gitconfig) which contains an email address and private key) should be _copied_ into `~/`. Because the file you'll be editing is no longer in `~/.dotfiles`, it's less likely to be accidentally committed into your public dotfiles repo.
+Any file in the `copy` subdirectory will be copied into `~/`. Any file that _needs_ to be modified with personal information (like [.gitconfig](https://github.com/TobiasSchroeder/dotfiles/blob/master/copy/.gitconfig) which contains an email address and private key) should be _copied_ into `~/`. Because the file you'll be editing is no longer in `~/.dotfiles`, it's less likely to be accidentally committed into your public dotfiles repo.
 
 ## The ~/ "link" step
 Any file in the `link` subdirectory gets symbolically linked with `ln -s` into `~/`. Edit these, and you change the file in the repo. Don't link files containing sensitive data, or you might accidentally commit that data!

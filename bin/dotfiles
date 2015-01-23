@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo 'Dotfiles - github.com/nocnokneo/dotfiles'
+echo 'Dotfiles - github.com/TobiasSchroeder/dotfiles'
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 
 Usage: $(basename "$0")
 
 See the README for documentation.
-https://github.com/nocnokneo/dotfiles
+https://github.com/TobiasSchroeder/dotfiles
 
 Copyright (c) 2012 "Cowboy" Ben Alman
 Licensed under the MIT license.
@@ -157,7 +157,7 @@ if [[ ! -d ~/.dotfiles ]]; then
   new_dotfiles_install=1
   # ~/.dotfiles doesn't exist? Clone it!
   e_header "Downloading dotfiles"
-  git clone --recursive https://github.com/nocnokneo/dotfiles.git ~/.dotfiles
+  git clone --recursive https://github.com/TobiasSchroeder/dotfiles.git ~/.dotfiles
   cd ~/.dotfiles
 else
   # Make sure we have the latest files.
