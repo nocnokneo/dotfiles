@@ -7,11 +7,9 @@ if [ -d ${HOME}/.local/bin ] ; then
     export PATH="${HOME}/.local/bin:$PATH"
 fi
 
-# set EDITOR to the best editor we can find on the system
-preferred_editors="emacs"
-# gedit will suffice if we have a graphical display
+# gedit is best if we have a graphical display
 [ ! -z $DISPLAY ] && preferred_editors="${preferred_editors} gedit"
-preferred_editors="${preferred_editors} nano pico vim vi"
+preferred_editors="${preferred_editors} nano pico vim vi emacs"
 
 # TODO Preferred editor for OS X? subl?
 #if [[ ! "$SSH_TTY" && "$OSTYPE" =~ ^darwin ]]; then
