@@ -19,7 +19,7 @@
 [web]
 	browser = google-chrome
 [user]
-	name = Taylor Braun-Jones
+	name = Tobias Schroeder
 [gui]
 	historybrowser = gitk
 	editor = emacs
@@ -85,8 +85,8 @@
 	helper = gnome-keyring
 	helper = cache --timeout=43200
 [credential "https://github.sw.ge.com"]
-	username = TaylorBraunJones
+	username = TobiasSchroeder
 [credential "https://github.com"]
-	username = nocnokneo
+	username = TobiasSchroeder
 [hub]
 	host = github.sw.ge.com
