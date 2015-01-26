@@ -90,3 +90,5 @@
 	username = nocnokneo
 [hub]
 	host = github.sw.ge.com
+[cola]
+	textwidth = 78
