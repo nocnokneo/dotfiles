@@ -81,7 +81,18 @@
 	bc3 = trustExitCode
 [sendemail]
 	thread = false
+# multiple instances of the credential.helper configuration variable are tried
+# in turn
+#
+# git-credential-gnome-keyring setup on Ubuntu 15.04:
+#
+#   sudo apt-get install libgnome-keyring-dev
+#   cd /usr/share/doc/git/contrib/credential/gnome-keyring
+#   sudo make
+#
+# Reference: http://stackoverflow.com/a/14528360/471839)
 [credential]
+	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
 	helper = gnome-keyring
 	helper = cache --timeout=43200
 [credential "https://github.sw.ge.com"]
