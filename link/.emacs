@@ -82,6 +82,7 @@
 (setq search-highlight t)
 
 ;; Iswitchb is much nicer for inter-buffer navigation.
+;; TODO: Switch to Icomplete. Iswitchdb is deprecated starting in Emacs 24.
 (cond ((fboundp 'iswitchb-mode)                ; GNU Emacs 21
        (iswitchb-mode 1))
       ((fboundp 'iswitchb-default-keybindings) ; Old-style activation
