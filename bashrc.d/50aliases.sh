@@ -43,14 +43,6 @@ maybe_alias ij /opt/Fiji.app/fiji-linux64
 maybe_alias valgrind-callgrind 'valgrind --tool=callgrind --dump-instr=yes --simulate-cache=yes' valgrind
 maybe_alias valgrind-memcheck  'valgrind --tool=memcheck --leak-check=yes' valgrind
 
-# Remove ccache from the PATH (and keep the path clean be removing leading or trailing ":"
-maybe_alias ccache-disable \
-    'export PATH=$(echo $PATH | sed -e "s,:*/usr/lib64/ccache:*,:,g" -e "s/\(^:*\|:*$\)//g")' \
-    ccache
-maybe_alias ccache-enable \
-    'if ! echo $PATH | grep -q /usr/lib64/ccache; then export PATH=$PATH:/usr/lib64/ccache; fi' \
-    ccache
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --expire-time 4000 --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

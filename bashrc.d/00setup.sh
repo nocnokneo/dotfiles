@@ -23,10 +23,23 @@ function path_remove() {
     echo "${t[*]}"
 }
 
-case ":${PATH:-}:" in
-    *:/usr/lib64/ccache:*) ;;
-    *) PATH="/usr/lib64/ccache${PATH:+:$PATH}" ;;
-esac
+# Enable the ccache PATH interceptors if installed
+for d in /usr/lib{64,}/ccache; do
+    if [ -d ${d} ]; then
+        case ":${PATH:-}:" in
+            *:${d}:*) ;;
+            *) PATH="${d}${PATH:+:$PATH}" ;;
+        esac
+
+        # Add convenience aliases to enable/disable the ccache PATH interceptors
+        # Remove ccache from the PATH (and keep the path clean be removing leading or trailing ":"
+        alias ccache-disable='export PATH=$(echo $PATH | sed -e "s,:*'${d}':*,:,g" -e "s/\(^:*\|:*$\)//g")'
+        alias ccache-enable='if ! echo $PATH | grep -q '${d}'; then export PATH='${d}':$PATH; fi'
+
+        # We've found a ccache interceptor directory - first one wins, so we're done
+        break
+    fi
+done
 
 # Add a directory to the system PATH.
 #  -f or --front to prepend to the front
