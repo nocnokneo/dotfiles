@@ -129,9 +129,9 @@
 ;; Use UNIX line endings by default
 (set-buffer-file-coding-system 'utf-8-unix)
 ;; No, really. _Always_ use UNIX style line endings.
-(defun set-unix-style-line-endings ()
-  (set-buffer-file-coding-system 'unix))
-(add-hook 'before-save-hook 'set-unix-style-line-endings)
+;(defun set-unix-style-line-endings ()
+;  (set-buffer-file-coding-system 'unix))
+;(add-hook 'before-save-hook 'set-unix-style-line-endings)
 
 ;; Tell Emacs the C coding style to use
 (defun my-c-mode-common-hook ()
