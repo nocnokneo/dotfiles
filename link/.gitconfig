@@ -103,3 +103,5 @@
 	host = github.sw.ge.com
 [cola]
 	textwidth = 78
+[remote-hg]
+	insecure = true
