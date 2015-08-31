@@ -14,6 +14,7 @@
  '(case-fold-search t)
  '(column-number-mode t)
  '(compilation-scroll-output t)
+ '(compilation-skip-threshold 2)
  '(compilation-window-height 15)
  '(compile-command (format tcl-compile-command buffer-file-name))
  '(current-language-environment "ASCII")
