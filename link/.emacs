@@ -66,6 +66,7 @@
                 ("\\.\(bin\|exe\)$" . hexl-mode)
                 ("\\.gdb$" . gdb-script-mode)
                 ("\\.pro$" . qmake-mode)
+                ("\\.qs$" . javascript-mode)
                 ) auto-mode-alist))
 
 ;;(setq-default show-trailing-whitespace t)
