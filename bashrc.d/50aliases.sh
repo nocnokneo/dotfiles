@@ -20,6 +20,10 @@ alias gdb='gdb -quiet'
 alias pu=pushd
 alias po=popd
 alias rl='readlink -f'
+
+# Ignore binary files when grep'ing and enable colorized output
+alias grep="grep -I --color=auto"
+
 # Check that which supports the -i option
 if which -i &>/dev/null; then
     alias which='alias | which -i'
@@ -58,9 +62,6 @@ fi
 function md() {
   mkdir -p "$@" && cd "$@"
 }
-
-# Ignore binary files when grep'ing and enable colorized output
-export GREP_OPTIONS="-I --color=auto"
 
 function swap() {
     if [ $# -ne 2 ]; then
