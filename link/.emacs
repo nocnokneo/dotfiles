@@ -58,6 +58,7 @@
 (setq auto-mode-alist
       (append '(("\\.\(cc\|C\|c\|hxx\|hpp\|txx\|h\|cpp\|cxx\|cu\|cuh\)$" . c++-mode)
                 ("[Mm]akefile" . makefile-mode)
+                ("Dockerfile\\'" . dockerfile-mode)
                 ("\\.pde$" . c-mode)
                 ("\\.bld$" . makefile-mode)
                 ("\\.m$" . matlab-mode)
@@ -228,3 +229,10 @@
 (setq web-mode-css-indent-offset 2)
 ;; Script offset indentation (for JavaScript, Java, PHP, etc.)
 (setq web-mode-code-indent-offset 2)
+
+
+;;
+;; dockerfile-mode
+;;
+;; See: https://github.com/spotify/dockerfile-mode
+(require 'dockerfile-mode)
