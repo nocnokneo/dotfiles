@@ -25,6 +25,7 @@
  '(highline-selected-window t)
  '(indent-tabs-mode nil)
  '(initial-scratch-message nil)
+ '(load-prefer-newer t)
  '(query-replace-highlight t)
  '(scroll-bar-mode (quote right))
  '(scroll-conservatively 10)
