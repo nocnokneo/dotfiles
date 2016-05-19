@@ -7,7 +7,10 @@ if ! type __git_ps1 &>/dev/null; then
 fi
 
 hg_ps1() {
-    hg prompt "{ on {branch}}{ at {bookmark}}{status}" 2> /dev/null
+    hg_ps1_string=$(hg prompt "{ on {branch}}{ at {bookmark}}{status}" 2>/dev/null)
+    if [ $? -eq 0 ]; then
+        echo "${hg_ps1_string}"
+    fi
 }
 
 if type __git_ps1 &>/dev/null; then
