@@ -58,7 +58,8 @@
 [interactive]
 	singlekey = true
 [push]
-	default = tracking
+	default = simple
+	followTags = true
 [rerere]
 	enabled = true
 
