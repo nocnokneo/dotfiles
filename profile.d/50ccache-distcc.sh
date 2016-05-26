@@ -12,3 +12,4 @@ export CCACHE_EXTRAFILES=/proc/cpuinfo
 # A different .distcc directory for each host is needed when used shared a NFS
 # home
 export DISTCC_DIR=${HOME}/.distcc-`hostname`
+mkdir -p ${DISTCC_DIR}
