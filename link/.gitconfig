@@ -1,21 +1,3 @@
-# This is for re-writting "git://github.com" URLs but since the git protocol
-# won't work for *any* outside site we might as well re-write any git:// URL
-# and hope the the site supports it
-[url "http://github.com"]
-	insteadOf = git://github.com
-[url "http://github.com/"]
-	insteadOf = git://git@github.com:
-[url "http://github.com/"]
-	insteadOf = git@github.com:
-# [url "http://git.dcmtk.org"]
-# 	insteadOf = "git://git.dcmtk.org"
-# [url "http://"]
-# 	insteadOf = "git://"
-
-# Workaround for bug when using SSL and HTTP proxy (LP #940431)
-#[url "http://"]
-#	insteadOf = https://
-
 [web]
 	browser = google-chrome
 [user]
