@@ -7,7 +7,7 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-if [[ "$OSTYPE" =~ ^darwin ]]; then
+if [[ "$OSTYPE" =~ ^darwin || "$(lsb_release -is 2>/dev/null)" == "Ubuntu" ]]; then
     if [ -d ~/.dotfiles/profile.d ]; then
         for sh_file in ~/.dotfiles/profile.d/*.sh; do
             if [ -r $sh_file ]; then
