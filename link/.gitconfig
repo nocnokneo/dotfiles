@@ -54,6 +54,7 @@
 [rebase]
 	autosquash = true
 	stat = true
+	autoStash = true
 [http]
 [interactive]
 	singlekey = true
