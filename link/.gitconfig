@@ -6,14 +6,14 @@
 	historybrowser = gitk
 	editor = emacs
 [alias]
-        st = status
+	st = status
 	ci = commit
 	br = branch
 	co = checkout
 	df = diff
 	lg = log -p
-        lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
-        dt = difftool -y
+	lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	dt = difftool -y
 	switch = !legit switch \"$@\"
 	branches = !legit branches
 	sprout = !legit sprout \"$@\"
