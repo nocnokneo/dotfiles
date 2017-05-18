@@ -1,11 +1,12 @@
-[web]
-	browser = google-chrome
 [user]
 	name = Taylor Braun-Jones
 [gui]
 	historybrowser = gitk
 	editor = emacs
+	#editor = C:/Users/tbraunjones/opt/emacs/bin/emacsclientw.exe --tty --alternate-editor=
 [alias]
+	incoming = log --oneline ..@{upstream}
+	outgoing = log --oneline @{push}..
 	st = status
 	ci = commit
 	br = branch
@@ -14,6 +15,7 @@
 	lg = log -p
 	lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	dt = difftool -y
+	tag-comments = tag --list --format '%(refname:strip=2) %(subject)'
 	switch = !legit switch \"$@\"
 	branches = !legit branches
 	sprout = !legit sprout \"$@\"
@@ -27,6 +29,7 @@
 	intercommit = !sh -c 'interdiff <(git show $1) <(git show $2) | less -FRS' -
 [core]
 	excludesfile = ~/.dotfiles/conf/.gitignore_global
+	autocrlf = true
 [color]
 	branch = auto
 	diff = auto
@@ -41,28 +44,17 @@
 [interactive]
 	singlekey = true
 [push]
-	default = simple
+	default = current
 	followTags = true
 [rerere]
 	enabled = true
 
-#
-# BeyondCompare 3 as the diff/merge tool
-#
-# The built-in "b3c" difftool configuration is missing important bcompare flags:
-#
-#   -solo option is required to launch a seperate process (not reuse an existing
-#   bcompare process that might be open)
-#   -expandall option is a convenience to automatically expand all directories
-#
-[difftool "bc3"]
-	cmd = bcompare -expandall -solo \"$LOCAL\" \"$REMOTE\"
 [merge]
-	tool = bc3
+	tool = bc
 [diff]
-	tool = bc3
+	tool = bc
 [difftool]
-	bc3 = trustExitCode
+	bc = trustExitCode
 [sendemail]
 	thread = false
 # multiple instances of the credential.helper configuration variable are tried
@@ -91,7 +83,3 @@
 	insecure = true
 [log]
 	follow = true
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
