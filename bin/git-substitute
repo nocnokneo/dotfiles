@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 print_usage() {
     cat <<EOF
 Usage: git substitute STRING REPLACEMENT [ FILE|DIR ... ]
@@ -17,5 +19,16 @@ fi
 
 string="$1"
 replacement="$2"
+sed_replacement_command="s^${string}^${replacement}^g"
 shift 2
-git grep -lz "${string}" -- "$@" | xargs -0 sed -i "s^${string}^${replacement}^g"
+
+for file in $(git grep -l "${string}" -- "$@"); do
+    sed -i "${sed_replacement_command}" ${file}
+    if [[ "${OS}" =~ "Windows" ]]; then
+        unix2dos ${file}
+    fi
+done
+
+for file in $(git ls-files | grep "${string}"); do
+    git mv ${file} $(echo ${file} | sed -e "${sed_replacement_command}")
+done
