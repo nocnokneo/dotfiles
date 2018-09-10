@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+
+import sys
+from urllib.parse import urlparse
+
+for f in sys.argv[1:]:
+    f_parts = urlparse(f)
+    print(r'''\\%s%s''' % (f_parts.hostname, f_parts.path.replace('/', '\\')))
