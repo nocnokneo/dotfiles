@@ -2,8 +2,6 @@
 # to be in our path for the ruby in our system PATH
 # https://guides.rubygems.org/faqs/#user-install
 if which ruby >/dev/null && which gem >/dev/null; then
-    user_gem_bin_dir="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin"
-    if [ -d "${user_gem_bin_dir}" ]; then
-        PATH="${user_gem_bin_dir}:${PATH}"
-    fi
+    export GEM_HOME="$(ruby -r rubygems -e 'puts Gem.user_dir')"
+    PATH="${GEM_HOME}/bin:${PATH}"
 fi
