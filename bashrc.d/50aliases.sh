@@ -31,7 +31,6 @@ fi
 alias proxy-off='unset http_proxy https_proxy no_proxy'
 alias strip-trailing=sed\ -i\ 's/[[:space:]]*$//'
 maybe_alias yum-no-proxy-env 'env -u http_proxy -u https_proxy yum' yum
-maybe_alias xo xdg-open
 maybe_alias eamacs emacs
 maybe_alias emasc emacs
 maybe_alias unu teem-unu
