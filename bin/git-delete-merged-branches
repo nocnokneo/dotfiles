@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Ref: http://stackoverflow.com/a/6127884/471839
+git branch --merged origin/master | egrep -v '(^\*|master|dev)' | xargs --no-run-if-empty git branch -D
