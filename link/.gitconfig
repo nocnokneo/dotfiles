@@ -12,6 +12,7 @@
 	br = branch
 	co = checkout
 	df = diff
+        gr = grep -I
 	lg = log -p
 	lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	dt = difftool -y
@@ -27,6 +28,7 @@
 	head = rev-parse HEAD
 	show-graphical = !sh -c 'git difftool -d $1^..$1' -
 	intercommit = !sh -c 'interdiff <(git show $1) <(git show $2) | less -FRS' -
+	releases = for-each-ref --format=\"%(color:bold green)%(align:10,left)%(refname:short)%(end)%(color:reset) %(color:dim)%(align:32,left)%(creatordate)%(end) %(color:reset)%(contents:subject)\" refs/tags/*
 [core]
 	excludesfile = ~/.dotfiles/conf/.gitignore_global
 	autocrlf = true
@@ -79,7 +81,10 @@
 	host = github.sw.ge.com
 [cola]
 	textwidth = 78
+	spellcheck = true
 [remote-hg]
 	insecure = true
 [log]
 	follow = true
+[gitubuntu]
+	lpuser = taylor@braun-jones.org

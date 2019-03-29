@@ -23,6 +23,7 @@ alias rl='readlink -f'
 
 # Ignore binary files when grep'ing and enable colorized output
 alias grep="grep -I --color=auto"
+alias egrep="egrep -I --color=auto"
 
 # Check that which supports the -i option
 if which -i &>/dev/null; then
@@ -79,3 +80,5 @@ function swap() {
         mv "$2" "$1" &&
         mv "$tmpfile" "$2"
 }
+
+function qtcreator() { $(which qtcreator) -client "$@" & }

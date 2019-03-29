@@ -38,3 +38,6 @@ Desktop.ini
 *.pro.user
 
 CMakeLists.txt.user
+
+# RubyMine project files (and other JetBrains products?)
+.idea/
