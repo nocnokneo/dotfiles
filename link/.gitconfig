@@ -61,6 +61,7 @@
 	tool = bc
 [difftool]
 	bc = trustExitCode
+	prompt = false
 [sendemail]
 	thread = false
 # multiple instances of the credential.helper configuration variable are tried
@@ -86,6 +87,7 @@
 [cola]
 	textwidth = 78
 	spellcheck = true
+	safemode = true
 [remote-hg]
 	insecure = true
 [log]
