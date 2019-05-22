@@ -9,10 +9,10 @@
 	outgoing = log --oneline @{push}..
 	st = status
 	ci = commit
-	br = branch
+	br = branch --sort=committerdate
 	co = checkout
 	df = diff
-        gr = grep -I
+	gr = !sh -c 'git grep -I "$@" -- \":(exclude)*.ipynb\"' -
 	lg = log -p
 	lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	dt = difftool -y
@@ -26,9 +26,14 @@
 	publish = !legit publish \"$@\"
 	graft = !legit graft \"$@\"
 	head = rev-parse HEAD
-	show-graphical = !sh -c 'git difftool -d $1^..$1' -
+        show-graphical = !sh -c 'git difftool -d ${1:-HEAD}^..${1:-HEAD}' -
 	intercommit = !sh -c 'interdiff <(git show $1) <(git show $2) | less -FRS' -
 	releases = for-each-ref --format=\"%(color:bold green)%(align:9,left)%(refname:short)%(end)%(color:reset) %(color:dim)%(align:10,left)%(creatordate:short)%(end) %(color:reset)%(contents:subject)\" refs/tags/*
+	feature-difftool = !sh -c 'git difftool -d $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
+	feature-diff = !sh -c 'git diff $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
+	feature-log = !sh -c 'git log --oneline $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
+	feature-changes = !sh -c 'git log --reverse --pretty=%s $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
+	mr-for = !sh -c 'git show `git rev-list $0..origin/master --ancestry-path --merges --reverse | head -n 1`'
 [core]
 	excludesfile = ~/.dotfiles/conf/.gitignore_global
 	autocrlf = true
