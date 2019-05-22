@@ -36,7 +36,6 @@
 	mr-for = !sh -c 'git show `git rev-list $0..origin/master --ancestry-path --merges --reverse | head -n 1`'
 [core]
 	excludesfile = ~/.dotfiles/conf/.gitignore_global
-	autocrlf = true
 [color]
 	branch = auto
 	diff = auto
