@@ -9,8 +9,8 @@ defscrollback 100000
 
 # backticks to display information in the statusbar
 # From: https://github.com/thewtex/screen-cpu-mem
-backtick 1 0 0 /usr/bin/screen-mem-usage
-backtick 2 0 0 /usr/bin/screen-cpu-usage
+backtick 1 0 0 screen-mem-usage
+backtick 2 0 0 screen-cpu-usage
 hardstatus alwayslastline
 hardstatus string '%{kg}Host:%{kG}%H%{kg} %=%{kb}Mem:%{kB}%1`  %{ky}Cpu:%{kY}%2`%%  %{kR}Load:%{kr}%l%=%{kc} %D %m/%d %{kC}%C%a%{w}'
 
