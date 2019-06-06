@@ -81,4 +81,4 @@ function swap() {
         mv "$tmpfile" "$2"
 }
 
-function qtcreator() { $(which qtcreator) -client "$@" & }
+function qc() { $(which qtcreator) -client "$@" & }
