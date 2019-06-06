@@ -12,7 +12,7 @@
 	br = branch --sort=committerdate
 	co = checkout
 	df = diff
-	gr = !sh -c 'git grep -I "$@" -- \":(exclude)*.ipynb\"' -
+        gr = !sh -c 'git grep -I ""$@"" -- \":(exclude)*.ipynb\"' -
 	lg = log -p
 	lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	dt = difftool -y
