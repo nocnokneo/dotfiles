@@ -5,3 +5,5 @@ If($Host.Name -eq 'ConsoleHost') {
     Set-PSReadLineOption -EditMode Emacs
 }
 
+# Ref: https://www.windows-commandline.com/reboot-computer-from-command-line/
+function reboot { wmic os where Primary='TRUE' reboot }
