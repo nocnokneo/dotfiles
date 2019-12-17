@@ -6,4 +6,4 @@ If($Host.Name -eq 'ConsoleHost') {
 }
 
 # Ref: https://www.windows-commandline.com/reboot-computer-from-command-line/
-function reboot { wmic os where Primary='TRUE' reboot }
+function reboot { wmic os where Primary=TRUE reboot }
