@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cd ~/git/genshi
+
+google-chrome &
+#evolution &
+python3 ~/git/git-cola/bin/git-cola &
+# The slack ruby gem installs a CLI tool binary with the same name as the
+# official Slack client. Grr...
+$(which -a slack | grep -vF /ruby/ | head -n1) &
+
+# MS Teams. Supposed to auto-start on its own but that is not working ...
+teams &
+
+#. ~/.virtualenvs/genshi/bin/activate &
+pgrep qtcreator &>/dev/null || ~/Qt/Tools/QtCreator/bin/qtcreator.sh &
+
+synergy &
+
+# Outlook
+google-chrome --profile-directory=Default --app-id=adkbcpmfadlncofabncgdobcpppmffhl &
+
+exec gnome-terminal

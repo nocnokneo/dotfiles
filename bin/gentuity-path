@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 
 import sys
+import re
 from urllib.parse import urlparse, unquote
 
+def get_unc_path(path):
+    m = re.search(r'smb-share:server=(?P<server>\w+),share=(?P<share>\w+)(?P<path>.*)', path)
+    if m:
+        return ('//%(server)s/%(share)s%(path)s' % m.groupdict()).replace('/', '\\')
+    f_parts = urlparse(path)
+    return r'''\\%s%s''' % (f_parts.hostname, unquote(f_parts.path).replace('/', '\\'))
+
+
 for f in sys.argv[1:]:
-    f_parts = urlparse(f)
-    print(r'''\\%s%s''' % (f_parts.hostname, unquote(f_parts.path).replace('/', '\\')))
+    print(get_unc_path(f))

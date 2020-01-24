@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Exec=genshi-dev-apps
+Name=Genshi Dev Apps
+Comment=Launch applications for Genshi development
+Categories=Development

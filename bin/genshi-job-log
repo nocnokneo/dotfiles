@@ -1,0 +1,6 @@
+#!/bin/bash
+
+JOB=$1
+SESSION='64651dbdf5283ddc1ff3f6d32963bdb7'
+
+curl "https://gitlab/sw/genshi/-/jobs/${JOB}/raw" --silent -H "cookie: _gitlab_session=${SESSION};" --compressed

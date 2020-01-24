@@ -1,0 +1,3 @@
+#!/bin/bash
+
+genshi-job-log $1 | less -R
