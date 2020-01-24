@@ -4,6 +4,10 @@
 ;;  Author: Taylor Braun-Jones
 ;;
 
+;; Reasonable default window size
+(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 40))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
