@@ -81,4 +81,19 @@ function swap() {
         mv "$tmpfile" "$2"
 }
 
-function qc() { $(which qtcreator) -client "$@" & }
+function qtcreator() { $(which qtcreator) -client "$@" & }
+#function qtcreator() { "${HOME}/Qt/Tools/Preview/Qt Creator 4.11.0-rc1/bin/qtcreator" -client "$@" & }
+alias qc=qtcreator
+
+# Run a command in a TTY that looks interactive so that output is automatically colored
+# From: https://stackoverflow.com/a/20401674/471839
+function faketty() {
+    script -qefc "$(printf "%q " "$@")" /dev/null
+}
+
+if [[ $OS == Windows_NT ]]; then
+    alias reboot="wmic os where Primary=TRUE reboot"
+    alias uptime="wmic path Win32_OperatingSystem get LastBootUpTime"
+    alias cpuinfo="wmic cpu get caption, deviceid, name, numberofcores, maxclockspeed, status"
+    alias diskinfo="wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNumber"
+fi
