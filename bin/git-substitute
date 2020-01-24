@@ -12,9 +12,8 @@ directory will be searched.
 EOF
 }
 
-if [ ! "$2" ]; then
+if [[ $# -lt 2 ]]; then
     print_usage
-    exit 1
 fi
 
 string="$1"
