@@ -2,7 +2,7 @@
 	name = Taylor Braun-Jones
 [gui]
 	historybrowser = gitk
-	editor = emacs
+	editor = xdg-open
 	#editor = C:/Users/tbraunjones/opt/emacs/bin/emacsclientw.exe --tty --alternate-editor=
 [alias]
 	incoming = log --oneline ..@{upstream}
@@ -12,7 +12,7 @@
 	br = branch --sort=committerdate
 	co = checkout
 	df = diff
-        gr = !sh -c 'git grep -I ""$@"" -- \":(exclude)*.ipynb\"' -
+        gr = !sh -c 'git grep -I \"$@\" -- \":(exclude)*.ipynb\"' -
 	lg = log -p
 	lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	dt = difftool -y
@@ -88,9 +88,39 @@
 	textwidth = 78
 	spellcheck = true
 	safemode = true
+	statusindent = false
+	statusshowtotals = false
+	boldheaders = true
+	expandtab = true
+	theme = flat-dark-grey
+	icontheme = dark
+	autocompletepaths = true
 [remote-hg]
 	insecure = true
 [log]
 	follow = true
+[web]
+	browser = xdg-open
+[lfs "https://gitlab/tbraunjones/genshi.git/info/lfs"]
+	locksverify = true
 [gitubuntu]
 	lpuser = taylor@braun-jones.org
+# webdiff can be just diff for console only diffing
+[diff "jupyternotebook"]
+	command = git-nbdiffdriver webdiff
+[merge "jupyternotebook"]
+	driver = git-nbmergedriver merge %O %A %B %L %P
+	name = jupyter notebook merge driver
+[difftool "nbdime"]
+	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+[mergetool "nbdime"]
+	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool]
+	prompt = false
+[filter "lfs"]
+        process = git-lfs filter-process
+        required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+[sequence]
+	editor = rebase-editor
