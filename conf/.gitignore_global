@@ -37,7 +37,7 @@ Desktop.ini
 *.qmlproject.user
 *.pro.user
 
-CMakeLists.txt.user
+CMakeLists.txt.user*
 
 # RubyMine project files (and other JetBrains products?)
 .idea/
