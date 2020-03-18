@@ -12,7 +12,7 @@
 	br = branch --sort=committerdate
 	co = checkout
 	df = diff
-        gr = !sh -c 'git grep -I \"$@\" -- \":(exclude)*.ipynb\"' -
+	gr = !sh -c 'git grep -I \"$@\" -- \":(exclude)*.ipynb\"' -
 	lg = log -p
 	lsd = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	dt = difftool -y
@@ -26,7 +26,7 @@
 	publish = !legit publish \"$@\"
 	graft = !legit graft \"$@\"
 	head = rev-parse HEAD
-        show-graphical = !sh -c 'git difftool -d ${1:-HEAD}^..${1:-HEAD}' -
+	show-graphical = !sh -c 'git difftool -d ${1:-HEAD}^..${1:-HEAD}' -
 	intercommit = !sh -c 'interdiff <(git show $1) <(git show $2) | less -FRS' -
 	releases = for-each-ref --format=\"%(color:bold green)%(align:9,left)%(refname:short)%(end)%(color:reset) %(color:dim)%(align:10,left)%(creatordate:short)%(end) %(color:reset)%(contents:subject)\" refs/tags/*
 	feature-difftool = !sh -c 'git difftool -d $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
