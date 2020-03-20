@@ -26,10 +26,11 @@ function path_remove() {
 # Enable the ccache PATH interceptors if installed
 for d in /usr/lib{64,}/ccache; do
     if [ -d ${d} ]; then
-        case ":${PATH:-}:" in
-            *:${d}:*) ;;
-            *) PATH="${d}${PATH:+:$PATH}" ;;
-        esac
+        # Don't auto-enable ccache symlinks for now
+        # case ":${PATH:-}:" in
+        #     *:${d}:*) ;;
+        #     *) PATH="${d}${PATH:+:$PATH}" ;;
+        # esac
 
         # Add convenience aliases to enable/disable the ccache PATH interceptors
         # Remove ccache from the PATH (and keep the path clean be removing leading or trailing ":"
