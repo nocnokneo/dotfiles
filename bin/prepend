@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+print_usage() {
+    cat <<EOF
+Usage: prepend FILE
+
+Prepends stdin to FILE.
+EOF
+}
+
+if [ ! -e "$1" ]; then
+    print_usage
+    exit 1
+fi
+
+tempfile=$(mktemp $1.XXXXXX)
+trap "rm -f ${tempfile}" EXIT
+cat > ${tempfile}
+cat $1 >> ${tempfile}
+mv ${tempfile} $1
