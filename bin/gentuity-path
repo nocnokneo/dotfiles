@@ -8,6 +8,9 @@ def get_unc_path(path):
     m = re.search(r'smb-share:server=(?P<server>\w+),share=(?P<share>\w+)(?P<path>.*)', path)
     if m:
         return ('//%(server)s/%(share)s%(path)s' % m.groupdict()).replace('/', '\\')
+    m = re.search(r'/mnt/(?P<share>\w+)(?P<path>.*)', path)
+    if m:
+        return ('//gtyvm02/%(share)s%(path)s' % m.groupdict()).replace('/', '\\')
     f_parts = urlparse(path)
     return r'''\\%s%s''' % (f_parts.hostname, unquote(f_parts.path).replace('/', '\\'))
 
