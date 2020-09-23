@@ -97,3 +97,9 @@ if [[ $OS == Windows_NT ]]; then
     alias cpuinfo="wmic cpu get caption, deviceid, name, numberofcores, maxclockspeed, status"
     alias diskinfo="wmic diskdrive get Name, Manufacturer, Model, InterfaceType, MediaType, SerialNumber"
 fi
+
+# The "ultimate attach". Attaches to a screen session. If the session is
+# attached elsewhere, detaches that other display. If no session exists,
+# creates one. If multiple sessions exist, uses the first one.
+# See: https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index
+maybe_alias screen-attach 'screen -dRR' screen
