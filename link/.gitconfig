@@ -6,7 +6,9 @@
 	#editor = C:/Users/tbraunjones/opt/emacs/bin/emacsclientw.exe --tty --alternate-editor=
 [alias]
 	incoming = log --oneline ..@{upstream}
+	incoming-diff = diff ..@{upstream}
 	outgoing = log --oneline @{push}..
+	outgoing-diff = diff @{push}..
 	st = status
 	ci = commit
 	br = branch --sort=committerdate
@@ -33,6 +35,9 @@
 	feature-diff = !sh -c 'git diff $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
 	feature-log = !sh -c 'git log --oneline $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
 	feature-changes = !sh -c 'git log --reverse --pretty=%s $(git merge-base origin/master ${1:-HEAD})..${1:-HEAD}' -
+	# Interactively rebase a feature branch without pulling changes from master
+	feature-irebase = !sh -c 'git rebase -i $(git merge-base origin/master ${1:-HEAD}) $1' -
+	feature-rebase = rebase -i origin/master
 	mr-for = !sh -c 'git show `git rev-list $0..origin/master --ancestry-path --merges --reverse | head -n 1`'
 [core]
 	excludesfile = ~/.dotfiles/conf/.gitignore_global
