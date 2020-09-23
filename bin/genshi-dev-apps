@@ -12,12 +12,15 @@ $(which -a slack | grep -vF /ruby/ | head -n1) &
 # MS Teams. Supposed to auto-start on its own but that is not working ...
 teams &
 
-#. ~/.virtualenvs/genshi/bin/activate &
-pgrep qtcreator &>/dev/null || ~/Qt/Tools/QtCreator/bin/qtcreator.sh &
-
 synergy &
 
 # Outlook
-google-chrome --profile-directory=Default --app-id=adkbcpmfadlncofabncgdobcpppmffhl &
+google-chrome --profile-directory=Default --app-id=faolnafnngnfdaknnbpnkhgohbobgegn &
+
+# Enable core dumps
+ulimit -c unlimited
+
+#. ~/.virtualenvs/genshi/bin/activate &
+pgrep qtcreator &>/dev/null || ~/Qt/Tools/QtCreator/bin/qtcreator.sh &
 
 exec gnome-terminal
