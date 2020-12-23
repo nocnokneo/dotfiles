@@ -9,10 +9,7 @@ python3 ~/git/git-cola/bin/git-cola &
 # official Slack client. Grr...
 $(which -a slack | grep -vF /ruby/ | head -n1) &
 
-# MS Teams. Supposed to auto-start on its own but that is not working ...
-teams &
-
-synergy &
+#synergy &
 
 # Outlook
 google-chrome --profile-directory=Default --app-id=faolnafnngnfdaknnbpnkhgohbobgegn &
