@@ -103,3 +103,14 @@ fi
 # creates one. If multiple sessions exist, uses the first one.
 # See: https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index
 maybe_alias screen-attach 'screen -dRR' screen
+
+function onedrive-relogin() {
+    for conf in onedrive{,-it,-cfd}; do
+        confdir=~/.config/${conf}
+        echo "Re-login ondrive config: ${confdir} ..."
+        onedrive --logout --confdir ${confdir}
+        systemctl --user restart ${conf}
+    done
+    sleep 2
+    systemctl --user status "onedrive*"
+}
