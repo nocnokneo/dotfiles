@@ -14,6 +14,22 @@ def get_unc_path(path):
     f_parts = urlparse(path)
     return r'''\\%s%s''' % (f_parts.hostname, unquote(f_parts.path).replace('/', '\\'))
 
+def get_mapped_drive_path(unc_path):
+    # TODO: case insensitive replace and support all mapped drives (R:, S:, P:)
+    unc_path_to_drive = {
+    r'\\gtyvm02\labdata': 'S:',
+    r'\\labdata\labdata': 'S:',
+    r'\\gtyvm02\corporate': 'R:',
+    r'\\corporate\corporate': 'R:',
+    }
+    for unc_prefix, drive in unc_path_to_drive.items():
+        insensitive_unc_prefix = re.compile('^' + re.escape(unc_prefix), re.IGNORECASE)
+        drive_path = insensitive_unc_prefix.sub(drive, unc_path)
+        if unc_path != drive_path:
+            return drive_path
+    raise RuntimeError('Unknown drive mapping for: ' + unc_path)
 
 for f in sys.argv[1:]:
-    print(get_unc_path(f))
+    unc_path = get_unc_path(f)
+    #print(unc_path)
+    print(get_mapped_drive_path(unc_path))

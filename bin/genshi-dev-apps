@@ -2,6 +2,13 @@
 
 cd ~/git/genshi
 
+# as shown by `nmcli connection show`
+vpn_connection_uuid=9fc54bb3-cc82-44ac-a5fc-339e3ced42f0
+
+if ! ping -w1 -c1 10.1.11.1 >/dev/null; then
+    nmcli connection up ${vpn_connection_uuid}
+fi
+
 google-chrome &
 #evolution &
 python3 ~/git/git-cola/bin/git-cola &
@@ -19,5 +26,7 @@ ulimit -c unlimited
 
 #. ~/.virtualenvs/genshi/bin/activate &
 pgrep qtcreator &>/dev/null || ~/Qt/Tools/QtCreator/bin/qtcreator.sh &
+
+mount-gentuity
 
 exec gnome-terminal

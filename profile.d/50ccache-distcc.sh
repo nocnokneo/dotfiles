@@ -1,7 +1,7 @@
 # Make ccache compliant with the XDG Base Directory Specification
 export CCACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/ccache
 
-export CCACHE_MAXSIZE=25G
+export CCACHE_MAXSIZE=50G
 
 # Make the ccache objects CPU-specific by including /proc/cpuinfo when hashing
 # input files. This is necessary for objects compiled with `-march=native`

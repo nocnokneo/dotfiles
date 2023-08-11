@@ -4,8 +4,13 @@ import sys, re
 from subprocess import run
 from urllib.parse import urlparse
 
+BASE_PATH = '/mnt'
+
 for f in sys.argv[1:]:
+    f = f.replace('\\', '/')
+    f = re.sub(r'^S:/', 'file://{}/LABDATA/'.format(BASE_PATH), f)
+    f = re.sub(r'^R:/', 'file://{}/Corporate/'.format(BASE_PATH), f)
     f_parts = urlparse(f)
-    if f_parts.scheme == 'file' and f_parts.hostname.startswith('gty'):
+    if f_parts.scheme == 'file' and f_parts.hostname is not None and f_parts.hostname.startswith('gty'):
         f = f.replace('file://', 'smb://')
     run(['xdg-open', f])

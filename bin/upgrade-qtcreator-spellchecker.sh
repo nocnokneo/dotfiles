@@ -2,7 +2,7 @@
 
 set -e
 
-qtcreator_version=$(qtcreator -version 2>&1 | egrep '^Qt Creator 4.14.0' | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
+qtcreator_version=$(qtcreator -version 2>&1 | egrep '^Qt Creator ' | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' | head -n1)
 
 PLUGIN_DIR=${HOME}/.local/share/data/QtProject/qtcreator/plugins/${qtcreator_version}
 mkdir -p ${PLUGIN_DIR}

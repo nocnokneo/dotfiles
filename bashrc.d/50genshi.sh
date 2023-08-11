@@ -7,6 +7,9 @@ alias genshi-clean-log='sed -i -E "/ Async msg |  Async Message | :  Message: | 
 alias stripcolors='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g"'
 
 genshi-env() {
-    export PATH=/opt/ninja-1.9.0:/opt/cmake-3.17.1-Linux-x86_64/bin:/usr/local/cuda-10.0/bin:/opt/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04/bin:${PATH}
+    # doxygen 1.8.17 (the default version in Ubuntu 20.04) causes some reference
+    # errorsm, so use version 1.8.13 to match the current Docker build image
+    export PATH=/opt/ninja-1.9.0:/opt/cmake-3.22.1-linux-x86_64/bin:/usr/local/cuda-11.2/bin:/opt/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04/bin:/opt/doxygen-1.8.13/bin:${PATH}
 }
 
+export PATH=${HOME}/git/g2erminator/bin:${PATH}
