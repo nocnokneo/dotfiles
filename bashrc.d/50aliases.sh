@@ -104,12 +104,11 @@ fi
 # See: https://kapeli.com/cheat_sheets/screen.docset/Contents/Resources/Documents/index
 maybe_alias screen-attach 'screen -dRR' screen
 
-function onedrive-relogin() {
+function onedrive-reauth() {
     for conf in onedrive{,-it,-cfd}; do
         confdir=~/.config/${conf}
         echo "Re-login ondrive config: ${confdir} ..."
-        onedrive --logout --confdir ${confdir}
-        systemctl --user restart ${conf}
+        onedrive --reauth --confdir ${confdir}
     done
     sleep 2
     systemctl --user status "onedrive*"
