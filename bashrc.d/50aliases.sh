@@ -51,13 +51,6 @@ maybe_alias valgrind-memcheck  'valgrind --tool=memcheck --leak-check=yes' valgr
 #   sleep 10; alert
 alias alert='notify-send --expire-time 4000 --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Delete local Git branches after deleting their counterpart on the remote repo
-# Exceptions:
-#   - the currently checked out branch (not allowed by git)
-#   - special branches: master, develop, staging, default
-# See: http://stackoverflow.com/a/17987721/471839
-alias git-prune-local='git branch --merged | grep -Ev "(\*|master|develop|staging|default)" | xargs -n 1 git branch -d'
-
 # Check that dmesg on this box supports -T option
 if dmesg -T &>/dev/null
 then
