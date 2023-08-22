@@ -83,7 +83,7 @@ Any file in the `link` subdirectory gets symbolically linked with `ln -s` into `
 To keep things easy, the `~/.profile` and `~/.bashrc` and `~/.bash_profile` files are extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into a file in either the `profile.d` or `bashrc.d` subdirectory. `profile.d` is for environment configuration that should be done no matter what you login to (graphical desktop, bash, csh, etc.). `bashrc.d` is for bash-specific stuff.
 
 ## License
-Copyright (c) 2012 "Cowboy" Ben Alman  
+Copyright (c) 2012 "Cowboy" Ben Alman
 Copyright (c) 2013 Taylor Braun-Jones
-Licensed under the MIT license.  
+Licensed under the MIT license.
 <http://benalman.com/about/license/>
