@@ -49,4 +49,4 @@ function titlebar() {
 }
 
 # Disable XON/XOFF software flowcontrol (which can easily be triggered by an accidental Ctrl-s)
-stty -ixon
+stty -ixon &>/dev/null
