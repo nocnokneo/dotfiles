@@ -106,3 +106,7 @@ function onedrive-reauth() {
     sleep 2
     systemctl --user status "onedrive*"
 }
+
+function decode-uri() {
+    echo "$1" | sed 's/%/\\x/g' | xargs -0 printf
+}
