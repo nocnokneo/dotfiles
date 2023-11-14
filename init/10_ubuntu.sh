@@ -7,4 +7,4 @@ sudo apt-get -qq update
 
 # Install APT packages.
 e_header "Installing APT packages"
-sudo apt-get install git-core tree nmap htop screen
+sudo apt-get install git-core tree nmap htop screen undistract-me
