@@ -1,9 +1,3 @@
-# Color prompt
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w \$\[\033[00m\] '
-
-# History expansions will be verified before execution.
-#shopt -s histverify
-
 # autocd shell option introduced in bash 4.0
 if vergte ${BASH_VERSION} 4; then
     # automatically prepend 'cd ' when entering just a directory path
