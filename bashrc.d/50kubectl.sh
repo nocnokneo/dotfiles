@@ -1,6 +1,11 @@
 if which kubectl &>/dev/null; then
     source <(kubectl completion bash)
-    alias k=kubectl
+    if command -v kubecolor &>/dev/null; then
+        alias k=kubecolor
+        complete -o default -F __start_kubectl kubecolor
+    else
+        alias k=kubectl
+    fi
     complete -o default -F __start_kubectl k
 
     # short alias to set/show context/namespace
