@@ -17,4 +17,6 @@ if which kubectl &>/dev/null; then
         # $1 can be empty to unset the namespace
         [ "${1+x}" ] && kubectl config set-context --current --namespace "$1" || kubectl config view --minify | grep namespace | cut -d" " -f6
     }
+
+    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
