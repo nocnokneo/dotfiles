@@ -5,3 +5,6 @@ fi
 
 # Cache pip package downloads
 export PIP_DOWNLOAD_CACHE=~/.cache/pip
+
+# Don't clutter up dev environments with .pyc files
+export PYTHONDONTWRITEBYTECODE=1
