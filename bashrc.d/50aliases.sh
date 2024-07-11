@@ -120,3 +120,16 @@ rcode() {
     fi
     code --folder-uri=vscode-remote://ssh-remote+$1$2 
 }
+
+_rcode_completion() {
+    local cur prev words cword
+    _init_completion || return
+
+    # Use the _known_hosts function from bash-completion to complete hostnames
+    if [[ $COMP_CWORD -eq 1 ]]; then
+        _known_hosts_real "$cur"
+    fi
+}
+
+# Register the rcode completion function
+complete -F _rcode_completion rcode
