@@ -3,5 +3,6 @@
 # Get the remote repository's default branch name (e.g. main or master)
 default_branch=$(git default-branch)
 
+# Don't delete the current branch (prefixed with '*') or the default branch (prefixed with '+')
 # Ref: http://stackoverflow.com/a/6127884/471839
-git branch --merged origin/${default_branch} | egrep -v "(^\*|${default_branch}|dev)" | xargs --no-run-if-empty git branch -D
+git branch --merged origin/${default_branch} | egrep -v "^([*+]| *${default_branch})" | xargs --no-run-if-empty git branch -D
