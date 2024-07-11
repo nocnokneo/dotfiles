@@ -111,3 +111,12 @@ function onedrive-reauth() {
 function decode-uri() {
     echo "$1" | sed 's/%/\\x/g' | xargs -0 printf
 }
+
+# Open a SSH Remote VS Code workspace
+rcode() {
+    if [[ -z "${1}" ]]; then
+        echo "Usage: rcode HOSTNAME [WORKSPACE_PATH]" >&2
+        return 1
+    fi
+    code --folder-uri=vscode-remote://ssh-remote+$1$2 
+}
