@@ -4,5 +4,5 @@ if [ -x "${HOME}/.pulumi/bin/pulumi" ]; then
 fi
 
 if type pulumi &>/dev/null; then
-    . <(pulumi gen-completion bash)
+    PULUMI_SKIP_UPDATE_CHECK=1 . <(pulumi gen-completion bash)
 fi
