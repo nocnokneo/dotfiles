@@ -113,12 +113,13 @@ function decode-uri() {
 }
 
 # Open a SSH Remote VS Code workspace
+# See: https://code.visualstudio.com/docs/remote/troubleshooting#_connect-to-a-remote-host-from-the-terminal
 rcode() {
     if [[ -z "${1}" ]]; then
         echo "Usage: rcode HOSTNAME [WORKSPACE_PATH]" >&2
         return 1
     fi
-    code --folder-uri=vscode-remote://ssh-remote+$1$2 
+    code --folder-uri=vscode-remote://ssh-remote+$1$2
 }
 
 _rcode_completion() {
