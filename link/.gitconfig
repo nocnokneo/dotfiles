@@ -1,9 +1,9 @@
 [user]
 	name = Taylor Braun-Jones
+	email = taylor@braun-jones.org
 [gui]
 	historybrowser = gitk
-	editor = xdg-open
-	#editor = C:/Users/tbraunjones/opt/emacs/bin/emacsclientw.exe --tty --alternate-editor=
+	editor = code --wait
 [alias]
 	incoming = log --oneline ..@{upstream}
 	incoming-diff = diff ..@{upstream}
@@ -32,9 +32,10 @@
 	intercommit = !sh -c 'interdiff <(git show $1) <(git show $2) | less -FRS' -
 	releases = for-each-ref --format=\"%(color:bold green)%(align:9,left)%(refname:short)%(end)%(color:reset) %(color:dim)%(align:10,left)%(creatordate:short)%(end) %(color:reset)%(contents:subject)\" refs/tags/*
 	feature-difftool = !sh -c 'git difftool -d $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
+	feature-guidifftool = !sh -c 'git difftool -dg $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
 	feature-diff = !sh -c 'git diff $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
 	feature-log = !sh -c 'git log --oneline $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
-	feature-changes = !sh -c 'git log --reverse --pretty=%s $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
+	feature-changes = !sh -c 'git log --reverse --pretty=\"- %B\" $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
 	# Interactively rebase a feature branch without pulling changes from $(git default-branch)
 	feature-irebase = !sh -c 'git rebase -i $(git merge-base origin/$(git default-branch) ${1:-HEAD}) $1' -
 	mr-for = !sh -c 'git show `git rev-list $0..origin/$(git default-branch) --ancestry-path --merges --reverse | head -n 1`'
@@ -63,9 +64,14 @@
 	enabled = true
 
 [merge]
-	tool = bc
+	tool = vscode
 [diff]
-	tool = bc
+	guitool = bc
+	tool = vscode
+[difftool "vscode"]
+	cmd = code --wait --diff $LOCAL $REMOTE
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
 [difftool]
 	bc = trustExitCode
 	prompt = false
@@ -74,17 +80,18 @@
 # multiple instances of the credential.helper configuration variable are tried
 # in turn
 #
-# git-credential-gnome-keyring setup on Ubuntu 15.04:
+# git-credential-gnome-keyring setup on Ubuntu 23.10:
 #
-#   sudo apt-get install libgnome-keyring-dev
-#   cd /usr/share/doc/git/contrib/credential/gnome-keyring
-#   sudo make
+#     sudo apt-get install libsecret-1-0 libsecret-1-dev
+#     cd /usr/share/doc/git/contrib/credential/libsecret
+#     sudo make
+#     git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
 #
 # Reference: http://stackoverflow.com/a/14528360/471839)
 [credential]
-	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
-	helper = gnome-keyring
-	helper = cache --timeout=43200
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+#	helper = gnome-keyring
+#	helper = cache --timeout=43200
 [credential "https://github.sw.ge.com"]
 	username = TaylorBraunJones
 [credential "https://github.com"]
@@ -102,21 +109,20 @@
 	theme = flat-dark-grey
 	icontheme = dark
 	autocompletepaths = true
+	defaultrepo = /home/tbj/git/cyto
 [remote-hg]
 	insecure = true
 [log]
 	follow = true
 [web]
 	browser = xdg-open
-[lfs "https://gitlab/tbraunjones/genshi.git/info/lfs"]
-	locksverify = true
 [gitubuntu]
 	lpuser = taylor@braun-jones.org
 # webdiff can be just diff for console only diffing
 [diff "jupyternotebook"]
-	command = git-nbdiffdriver webdiff
+	command = /home/tbj/git/cyto/env/bin/git-nbdiffdriver webdiff
 [merge "jupyternotebook"]
-	driver = git-nbmergedriver merge %O %A %B %L %P
+	driver = /home/tbj/git/cyto/env/bin/git-nbmergedriver merge %O %A %B %L %P
 	name = jupyter notebook merge driver
 [difftool "nbdime"]
 	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
@@ -124,10 +130,17 @@
 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
+# [filter "lfs"]
+#         process = git-lfs filter-process
+#         required = true
+#         clean = git-lfs clean -- %f
+#         smudge = git-lfs smudge -- %f
+# [sequence]
+# 	editor = "/home/tbj/git/cyto/env/bin/rebase-editor --color --"
+[init]
+	defaultBranch = main
 [filter "lfs"]
-        process = git-lfs filter-process
-        required = true
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-[sequence]
-	editor = rebase-editor
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
