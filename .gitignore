@@ -6,3 +6,7 @@ link/.ssh/known_hosts
 *LOCAL*
 ??local.sh
 *.pyc
+bin/depot
+bin/devcontainer
+bin/docker-compose
+bin/docker-credential-secretservice
