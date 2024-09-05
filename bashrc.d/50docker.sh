@@ -4,6 +4,6 @@ for ociruntime in docker podman; do
     alias ${ociruntime}-cleanup="${ociruntime} system prune --filter 'until=24h'"
 done
 
-if type podman-compose > /dev/null && ! type docker-compose > /dev/null; then
+if type podman-compose &> /dev/null && ! type docker-compose &> /dev/null; then
     alias docker-compose=podman-compose
 fi
