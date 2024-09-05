@@ -1,5 +1,7 @@
 # Ubuntu-only stuff. Abort if not Ubuntu.
-[[ `platform_dist` == Ubuntu ]] || return 1
+if ! type apt &> /dev/null; then
+    return
+fi
 
 # Update APT.
 e_header "Updating APT cache"
