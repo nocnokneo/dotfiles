@@ -17,3 +17,9 @@ function git-rev-number()
     fi
     return 0
 }
+
+if ! type git-lfs &>/dev/null; then
+    return
+fi
+
+source <(git lfs completion bash)
