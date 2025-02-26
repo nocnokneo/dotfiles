@@ -11,7 +11,7 @@
 	outgoing-diff = diff @{push}..
 	st = status
 	ci = commit
-	br = branch --sort=committerdate
+	br = branch
 	co = checkout
 	df = diff
 	gr = !sh -c 'git grep -I \"$@\" -- \":(exclude)*.ipynb\"' -
@@ -30,7 +30,7 @@
 	head = rev-parse HEAD
 	show-graphical = !sh -c 'git difftool -d ${1:-HEAD}^..${1:-HEAD}' -
 	intercommit = !sh -c 'interdiff <(git show $1) <(git show $2) | less -FRS' -
-	releases = for-each-ref --format=\"%(color:bold green)%(align:9,left)%(refname:short)%(end)%(color:reset) %(color:dim)%(align:10,left)%(creatordate:short)%(end) %(color:reset)%(contents:subject)\" refs/tags/*
+	releases = for-each-ref --sort=version:refname --format=\"%(color:bold green)%(align:9,left)%(refname:short)%(end)%(color:reset) %(color:dim)%(align:10,left)%(creatordate:short)%(end) %(color:reset)%(contents:subject)\" refs/tags/*
 	feature-difftool = !sh -c 'git difftool -d $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
 	feature-guidifftool = !sh -c 'git difftool -dg $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
 	feature-diff = !sh -c 'git diff $(git merge-base origin/$(git default-branch) ${1:-HEAD})..${1:-HEAD}' -
@@ -58,16 +58,22 @@
 [interactive]
 	singlekey = true
 [push]
-	default = current
+	default = simple
 	followTags = true
+	autoSetupRemote = true
 [rerere]
 	enabled = true
+	autoupdate = true
 
 [merge]
 	tool = vscode
 [diff]
 	guitool = bc
 	tool = vscode
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [difftool "vscode"]
 	cmd = code --wait --diff $LOCAL $REMOTE
 [mergetool "vscode"]
@@ -119,15 +125,15 @@
 [gitubuntu]
 	lpuser = taylor@braun-jones.org
 # webdiff can be just diff for console only diffing
-[diff "jupyternotebook"]
-	command = /home/tbj/git/cyto/env/bin/git-nbdiffdriver webdiff
+# [diff "jupyternotebook"]
+# 	command = /home/tbj/git/cyto/env/bin/git-nbdiffdriver webdiff
 [merge "jupyternotebook"]
 	driver = /home/tbj/git/cyto/env/bin/git-nbmergedriver merge %O %A %B %L %P
 	name = jupyter notebook merge driver
-[difftool "nbdime"]
-	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
-[mergetool "nbdime"]
-	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+# [difftool "nbdime"]
+# 	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
+# [mergetool "nbdime"]
+# 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
 # [filter "lfs"]
@@ -144,3 +150,13 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[help]
+	autocorrect = prompt
