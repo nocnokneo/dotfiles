@@ -14,6 +14,7 @@ EOF
 
 if [[ $# -lt 2 ]]; then
     print_usage
+    exit 1 # Exit if arguments are insufficient
 fi
 
 string="$1"
@@ -21,13 +22,34 @@ replacement="$2"
 sed_replacement_command="s^${string}^${replacement}^g"
 shift 2
 
-for file in $(git grep -l "${string}" -- "$@"); do
-    sed -i "${sed_replacement_command}" ${file}
-    if [[ "${OS}" =~ "Windows" ]]; then
-        unix2dos ${file}
+# Loop 1: Substitute string in file contents
+# Use NUL-terminated output from git grep and a while-read loop for robustness with spaces
+# Quote file variable in sed and unix2dos commands
+git grep -l -z "${string}" -- "$@" | while IFS= read -r -d '' file; do
+    sed -i "${sed_replacement_command}" "${file}" # Quoted ${file}
+    if [[ "${OS}" =~ "Windows" ]]; then # Assuming OS is an env var
+        unix2dos "${file}" # Quoted ${file}
     fi
 done
 
-for file in $(git ls-files | grep "${string}"); do
-    git mv ${file} $(echo ${file} | sed -e "${sed_replacement_command}")
+# Loop 2: Rename files
+# Use NUL-terminated output from git ls-files and a while-read loop
+# Filter files containing the string in their name within the loop
+# Quote variables in git mv and use printf for sed input
+git ls-files -z | while IFS= read -r -d '' file; do
+    # Check if the filename itself contains the string
+    if [[ "$file" == *"$string"* ]]; then
+        # Generate new file name
+        new_file_name=$(printf "%s" "$file" | sed -e "${sed_replacement_command}")
+        
+        # Proceed only if new_file_name is not empty and is different from the original
+        if [[ -n "$new_file_name" && "$file" != "$new_file_name" ]]; then
+            new_file_dir=$(dirname "${new_file_name}")
+            # Create parent directory for the new file name if it's not the current directory and is not empty
+            if [[ -n "$new_file_dir" && "$new_file_dir" != "." ]]; then
+                 mkdir -p "${new_file_dir}"
+            fi
+            git mv "${file}" "${new_file_name}"
+        fi
+    fi
 done
