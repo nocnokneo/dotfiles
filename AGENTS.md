@@ -10,11 +10,32 @@ This is a modular dotfiles management system forked from cowboy/dotfiles, design
 3. Executes files from `init/`, `copy/`, and `link/` directories in sequence
 4. Backs up conflicting files to timestamped `backups/` directory
 
-**Modular Shell Configuration**: Uses a two-tier loading system:
-- `profile.d/*.sh` - Sourced once on login (environment variables, PATH setup)
-- `bashrc.d/*.sh` - Sourced on every new shell (aliases, functions, prompt)
+**Modular Shell Configuration**: Uses a two-tier loading system following canonical Unix/Linux shell initialization:
+
+- `profile.d/*.sh` - Sourced once on login shells (environment variables, PATH setup)
+- `bashrc.d/*.sh` - Sourced on every interactive shell (aliases, functions, prompt, completions)
+
+**Shell Initialization Flow**:
+
+```text
+Login shells (WSL2, SSH, terminal login):
+  ~/.bash_profile
+    ├─> ~/.profile (sources profile.d/*.sh for environment)
+    └─> ~/.bashrc (sources bashrc.d/*.sh for interactive features)
+          └─> Returns early if non-interactive
+
+Non-login interactive shells (subshells, `bash` command):
+  ~/.bashrc (only)
+    └─> Sources bashrc.d/*.sh
+```
+
+**Critical Separation**:
+
+- **profile.d/**: Login-once configuration (PATH, environment variables, umask). Avoid interactive features.
+- **bashrc.d/**: Interactive shell features (aliases, functions, prompt, bash completion). Never modify PATH here.
 
 **File Naming Convention**: Use numeric prefixes to control load order:
+
 - `00-09`: Core setup (e.g., `00setup.sh` for utility functions)
 - `10-49`: System/language-specific config (e.g., `10pixi.sh`, `50git.sh`)
 - `50-89`: Tool-specific configurations
@@ -43,7 +64,8 @@ if ! type apt &> /dev/null; then return; fi
 ## Development Workflow
 
 **Adding New Configurations**:
-1. Add tool-specific setup to `bashrc.d/50toolname.sh`
+
+1. Add tool-specific setup to `bashrc.d/50toolname.sh` (interactive features) or `profile.d/50toolname.sh` (PATH/environment)
 2. Add installation logic to appropriate `init/10_platform.sh`
 3. Use `~/.dotfiles/bin/dotfiles` to test changes
 
@@ -56,7 +78,9 @@ if ! type apt &> /dev/null; then return; fi
 ## Important Files
 
 - `bashrc.d/00setup.sh` - Core utility functions (`maybe_alias`, `path_remove`)
-- `link/.bashrc` - Entry point that sources profile.d and bashrc.d
+- `link/.bashrc` - Entry point that sources bashrc.d for interactive features
+- `link/.bash_profile` - Login shell entry that sources .profile then .bashrc
+- `link/.profile` - Sources profile.d for environment setup
 - `conf/firsttime_reminder.sh` - First-run instructions
 - `bin/dotfiles` - Main bootstrap/update script
 

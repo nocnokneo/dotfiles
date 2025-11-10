@@ -80,9 +80,23 @@ Any file in the `copy` subdirectory will be copied into `~/`. Any file that _nee
 Any file in the `link` subdirectory gets symbolically linked with `ln -s` into `~/`. Edit these, and you change the file in the repo. Don't link files containing sensitive data, or you might accidentally commit that data!
 
 ## Aliases and Functions
-To keep things easy, the `~/.profile` and `~/.bashrc` and `~/.bash_profile` files are extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into a file in either the `profile.d` or `bashrc.d` subdirectory. `profile.d` is for environment configuration that should be done no matter what you login to (graphical desktop, bash, csh, etc.). `bashrc.d` is for bash-specific stuff.
+
+To keep things easy, the `~/.profile` and `~/.bashrc` and `~/.bash_profile` files are extremely simple, and should never need to be modified. Instead, add your aliases, functions, settings, etc into a file in either the `profile.d` or `bashrc.d` subdirectory.
+
+### Shell Initialization
+
+The dotfiles follow the canonical Unix/Linux shell initialization pattern:
+
+* **Login shells** (WSL2, SSH, terminal login): `~/.bash_profile` → `~/.profile` (sources `profile.d/*.sh`) → `~/.bashrc` (sources `bashrc.d/*.sh`)
+* **Non-login shells** (subshells, `bash` command): `~/.bashrc` only (sources `bashrc.d/*.sh`)
+
+### Configuration Separation
+
+* **`profile.d/`**: Login-once environment setup (PATH, environment variables, umask). These are sourced once per login session and should work with any POSIX-compatible shell. Avoid interactive features here.
+* **`bashrc.d/`**: Interactive bash features (aliases, functions, prompt, completions). These are sourced for every interactive bash shell. Never modify PATH here—it belongs in `profile.d/`.
 
 ## License
+
 Copyright (c) 2012 "Cowboy" Ben Alman
 Copyright (c) 2013 Taylor Braun-Jones
 Licensed under the MIT license.
