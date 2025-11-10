@@ -17,4 +17,5 @@ sudo apt-get install \
     screen \
     undistract-me \
     colordiff \
-    xclip
+    xclip \
+    xdg-utils
