@@ -1,10 +1,28 @@
 #!/usr/bin/env python3
 
-import sys, re
+from functools import cache
+from pathlib import Path
+import sys
+import re
 from subprocess import run
 from urllib.parse import urlparse
 
 BASE_PATH = '/mnt'
+
+@cache
+def in_wsl() -> bool:
+    try:
+        version_info = Path('/proc/version').read_text().lower()
+        return 'microsoft' in version_info or 'wsl' in version_info
+    except FileNotFoundError:
+        return False
+
+def open_path(path: Path) -> None:
+    if in_wsl():
+        print('Opening in WSL')
+        run(['wsl-open', str(path)])
+    else:
+        run(['xdg-open', str(path)])
 
 for f in sys.argv[1:]:
     f = f.replace('\\', '/')
@@ -13,4 +31,4 @@ for f in sys.argv[1:]:
     f_parts = urlparse(f)
     if f_parts.scheme == 'file' and f_parts.hostname is not None and f_parts.hostname.startswith('gty'):
         f = f.replace('file://', 'smb://')
-    run(['xdg-open', f])
+    open_path(Path(f))

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -euo pipefail
+
+open_path() {
+    # open a file or directory using explorer.exe on Windows
+    local path="$1"
+        
+    if [[ -d "$path" ]]; then
+        (
+            cd "$path"
+            explorer.exe .
+        )
+    else
+        (
+            cd "$(dirname "$path")"
+            explorer.exe "$(basename "$path")"
+        )
+    fi
+}
+
+for file in "$@"; do
+    if [[ -e "$file" ]]; then
+        # echo "Processing file: $file"
+        # Add your file processing commands here
+        open_path "$file"
+    else
+        echo "File not found: $file" >&2
+    fi
+done
