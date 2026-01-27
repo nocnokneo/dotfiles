@@ -36,7 +36,11 @@ maybe_alias eamacs emacs
 maybe_alias emasc emacs
 maybe_alias unu teem-unu
 maybe_alias octave 'octave --silent' octave
-maybe_alias clipboard 'xclip -selection c' xclip
+if [[ $OS == Windows_NT ]]; then
+    alias clipboard='clip.exe'
+else
+    maybe_alias clipboard 'xclip -selection c' xclip
+fi
 
 # Enabling this alias will cause difficulty using pip inside a virtualenv
 #maybe_alias pip pip-python
