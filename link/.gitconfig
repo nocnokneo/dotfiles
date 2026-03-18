@@ -152,6 +152,7 @@
 	process = git-lfs filter-process
 [branch]
 	sort = -committerdate
+	autoSetupMerge = simple
 [tag]
 	sort = version:refname
 [fetch]
